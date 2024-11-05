@@ -1,147 +1,389 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bustracking</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>FeeTracker - Smart Bus Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        /* Hover effect for cards */
-        body {
-            background-color: #f8f9fa; /* Light gray background that suits black text */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --success-color: #4CAF50;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
         }
 
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            color: white !important;
+            margin: 0 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link .material-icons {
+            font-size: 20px;
+            color: white !important;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        /* Card Styling */
         .card {
-            transition: transform 0.3s, box-shadow 0.3s; /* Add transition for box-shadow */
-            height: 120px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add box shadow effect on hover */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-card {
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .stats-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .card-title {
+            color: #444;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .material-icons {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .stats-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        /* Advantages Section */
+        .advantage-card {
+            padding: 1.5rem;
+            height: 180px; /* Fixed height for advantage cards */
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .advantage-card .card-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .advantage-card .card-text {
+            color: #666;
+            line-height: 1.6;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        /* Animation for number counting */
+        @keyframes countUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .stats-value {
+            animation: countUp 1s ease-out forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .stats-card {
+                height: auto;
+                padding: 1rem;
+            }
+
+            .stats-value {
+                font-size: 1.5rem;
+            }
+            
+            .advantage-card {
+                height: auto;
+                min-height: 180px;
+            }
+        }
+
+        /* Logout Button */
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-logout .material-icons {
+            color: white;
+            margin: 0;
+        }
+
+        .btn-logout:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(63, 55, 201, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .welcome-section h1 {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">FeeTracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Add students</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Students details</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-disabled="true">other</a>
-                </li>
-            </ul>
-            <button class="btn btn-danger" type="submit">Logout</button>
+    <!-- Enhanced Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="material-icons" style="color: white;margin-right: 10px;">directions_bus</i>
+                FeeTracker
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="material-icons">person_add</i>
+                            Add Students
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="material-icons">people</i>
+                            Students Details
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="material-icons">more_horiz</i>
+                            Other
+                        </a>
+                    </li>
+                </ul>
+                <button class="btn btn-logout">
+                    <i class="material-icons">logout</i>
+                    Logout
+                </button>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<div class="container mt-5">
-    <h1 class="text-center display-6"><strong>Welcome to FeeTracker</strong></h1>
-    <div class="container mt-5">
+    <!-- Main Content -->
+    <div class="container" style="margin-top: 80px;">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h1>Welcome to FeeTracker</h1>
+            <p>Smart Bus Management System for Educational Institutions</p>
+        </div>
+
+        <!-- Stats Cards -->
         <div class="row">
             <div class="col-md-3">
-                <div class="card">
+                <div class="card stats-card">
                     <div class="card-body">
-                        <center><h5 class="card-title">Number of Buses</h5></center>
-                        <center><p class="card-text"><strong>10</strong></p></center>
+                        <h5 class="card-title">
+                            <i class="material-icons">directions_bus</i>
+                            Number of Buses
+                        </h5>
+                        <div class="stats-value" data-value="10">0</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card stats-card">
                     <div class="card-body">
-                        <center><h5 class="card-title">Total Students Enrolled</h5></center>
-                        <center><p class="card-text"><strong>500</strong></p></center>
+                        <h5 class="card-title">
+                            <i class="material-icons">groups</i>
+                            Total Students
+                        </h5>
+                        <div class="stats-value" data-value="500">0</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card stats-card">
                     <div class="card-body">
-                        <center><h5 class="card-title">Total Revenue</h5></center>
-                        <center><p class="card-text"><strong>$50,000</strong></p></center>
+                        <h5 class="card-title">
+                            <i class="material-icons">payments</i>
+                            Total Revenue
+                        </h5>
+                        <div class="stats-value" data-value="50000">$0</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
+                <div class="card stats-card">
                     <div class="card-body">
-                        <h5 class="card-title">Average Attendance</h5>
-                        <center><p class="card-text"><strong>85%</strong></p></center>
+                        <h5 class="card-title">
+                            <i class="material-icons">analytics</i>
+                            Average Attendance
+                        </h5>
+                        <div class="stats-value" data-value="85">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advantages Section -->
+        <h2 class="text-center mt-5 mb-4" style="color: var(--primary-color);">
+            <i class="material-icons" style="vertical-align: middle;">stars</i>
+            Advantages
+        </h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card advantage-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="material-icons">speed</i>
+                            Efficiency and Speed
+                        </h5>
+                        <p class="card-text">Automated systems offer faster verification, reduced wait times, and improved overall efficiency.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card advantage-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="material-icons">verified</i>
+                            Accuracy and Reliability
+                        </h5>
+                        <p class="card-text">Automated systems provide more accurate and reliable data, reducing errors and disputes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card advantage-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="material-icons">savings</i>
+                            Cost Savings
+                        </h5>
+                        <p class="card-text">Automation can reduce labor costs and improve resource allocation.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <h1 class="text-center display-6 mt-5 mb-lg-5"><strong>Advantages</strong></h1>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Efficiency and Speed</h5>
-                    <p class="card-text">Automated systems offer faster verification, reduced wait times, and improved overall efficiency.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Accuracy and Reliability</h5>
-                    <p class="card-text">Automated systems provide more accurate and reliable data, reducing errors and disputes.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Cost Savings</h5>
-                    <p class="card-text">Automation can reduce labor costs and improve resource allocation.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Security and Accountability</h5>
-                    <p class="card-text">Automated systems enhance security and provide better accountability.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Improved Student Experience</h5>
-                    <p class="card-text">Automation offers convenience, transparency, and a better overall experience for students.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Environmental Benefits</h5>
-                    <p class="card-text">Automation can reduce paper usage and contribute to a more sustainable environment.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate number counting
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * (end - start) + start);
+                
+                if (element.textContent.startsWith('$')) {
+                    element.textContent = '$' + currentValue.toLocaleString();
+                } else if (element.textContent.endsWith('%')) {
+                    element.textContent = currentValue + '%';
+                } else {
+                    element.textContent = currentValue.toLocaleString();
+                }
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Start animation when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const statElements = document.querySelectorAll('.stats-value');
+            statElements.forEach(element => {
+                const value = parseInt(element.getAttribute('data-value'));
+                animateValue(element, 0, value, 2000); // All animations now take 2 seconds
+            });
+        });
+    </script>
 </body>
 </html>

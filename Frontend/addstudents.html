@@ -1,59 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bustracking</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">FeeTracker</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Add students</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Students details</a>
-              <li class="nav-item">
-                <a class="nav-link " aria-disabled="true">other</a>
-              </li>
-            </ul>
-            <button class="btn btn-danger" type="submit">Logout</button>
-          </div>
-        </div>
-      </nav>
-      <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eTG0y9lfaEkEP4vR71y2N6N4740Nd0vQ9H6jVoR90+6DN7zN789uEjM0t+wvl6" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container-fluid" style="border: 1px solid rgb(195, 183, 183); width: 50%;padding: 30px;border-radius: 20px;margin-top: 160px;">
-        <center><div class="display-6">Add student details</div></center>
-        <div style="margin: auto;width: 40%;margin-top: 20px;">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <input type="file" class="form-control" id="fileInput" name="file">
-    
-                </div>
-                <center><button type="submit" class="btn btn-success">Upload</button></center>
-            </form>
-        </div><br>
-        <center><div><b>50</b> students details uploaded</div></center>
-    </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FeeTracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --success-color: #4CAF50;
+      --warning-color: #ff9800;
+      --danger-color: #f44336;
+    }
+
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      color: white !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link {
+      color: white !important;
+      margin: 0 10px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-link .material-icons {
+      font-size: 20px;
+      color: white !important;
+    }
+
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover:after {
+      width: 100%;
+    }
+
+    .upload-container {
+      background: #ffffff;
+      border: 2px dashed #e2e8f0;
+      border-radius: 15px;
+      padding: 40px;
+      margin-top: 80px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .upload-container:hover {
+      border-color: #2563eb;
+    }
+
+    .stats-box {
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-upload {
+      background-color: #2563eb;
+      border: none;
+      padding: 10px 30px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-upload:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .nav-link {
+      padding: 8px 16px !important;
+      border-radius: 8px;
+      margin: 0 4px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link.active {
+      background-color: #e0e7ff;
+      color: #2563eb !important;
+    }
+
+    /* Logout Button */
+    .btn-logout {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-logout .material-icons {
+      color: white;
+      margin: 0;
+    }
+
+    .btn-logout:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="material-icons">directions_bus</i>
+        FeeTracker
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="material-icons">person_add</i>
+              Add Students
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="material-icons">people</i>
+              Students Details
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="material-icons">more_horiz</i>
+              Other
+            </a>
+          </li>
+        </ul>
+        <button class="btn btn-logout">
+          <i class="material-icons">logout</i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="upload-container" style="margin-top: 200px;">
+      <div class="text-center">
+        <h2 class="display-6 mb-4">
+          <i class="fas fa-cloud-upload-alt me-2 text-primary"></i>
+          Add Student Details
+        </h2>
+      </div>
+      <div style="max-width: 500px; margin: auto;">
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+          <div class="mb-4">
+            <div class="input-group">
+              <input type="file" class="form-control" id="fileInput" name="file">
+              <button type="submit" class="btn btn-upload text-white">
+                <i class="fas fa-upload me-1"></i>
+                Upload
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="stats-box text-center">
+        <i class="fas fa-chart-bar me-2 text-primary"></i>
+        <span class="fw-bold text-primary">50</span> students details uploaded
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+
 </html>
