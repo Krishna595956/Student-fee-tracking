@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bustracking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Hover effect for cards */
+        body {
+            background-color: #f8f9fa; /* Light gray background that suits black text */
+        }
+
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s; /* Add transition for box-shadow */
+            height: 120px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add box shadow effect on hover */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">FeeTracker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Add students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Students details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-disabled="true">other</a>
+                </li>
+            </ul>
+            <button class="btn btn-danger" type="submit">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="text-center display-6"><strong>Welcome to FeeTracker</strong></h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <center><h5 class="card-title">Number of Buses</h5></center>
+                        <center><p class="card-text"><strong>10</strong></p></center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <center><h5 class="card-title">Total Students Enrolled</h5></center>
+                        <center><p class="card-text"><strong>500</strong></p></center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <center><h5 class="card-title">Total Revenue</h5></center>
+                        <center><p class="card-text"><strong>$50,000</strong></p></center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Average Attendance</h5>
+                        <center><p class="card-text"><strong>85%</strong></p></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="text-center display-6 mt-5 mb-lg-5"><strong>Advantages</strong></h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Efficiency and Speed</h5>
+                    <p class="card-text">Automated systems offer faster verification, reduced wait times, and improved overall efficiency.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Accuracy and Reliability</h5>
+                    <p class="card-text">Automated systems provide more accurate and reliable data, reducing errors and disputes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cost Savings</h5>
+                    <p class="card-text">Automation can reduce labor costs and improve resource allocation.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Security and Accountability</h5>
+                    <p class="card-text">Automated systems enhance security and provide better accountability.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Improved Student Experience</h5>
+                    <p class="card-text">Automation offers convenience, transparency, and a better overall experience for students.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Environmental Benefits</h5>
+                    <p class="card-text">Automation can reduce paper usage and contribute to a more sustainable environment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
