@@ -87,7 +87,6 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-        
     </style>
 </head>
 
@@ -117,17 +116,6 @@
                         </a>
                     </li>
                     <!-- Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="material-icons">filter_list</i>
-                            Filter by
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Bus no</a></li>
-                            <li><a class="dropdown-item" href="#">Department</a></li>
-                        </ul>
-                    </li>
                 </ul>
                 <button class="btn btn-logout">
                     <i class="material-icons">logout</i>
@@ -142,6 +130,41 @@
     <div class="container mt-5 pt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="display-6"><b>Student Details</b></h2>
+            <div class="d-flex align-items-center">
+                <div class="me-3">
+                    <strong>Filter:</strong>
+                    <div class="dropdown d-inline">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="filterBusDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Bus no
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="filterBusDropdown">
+                            <li><a class="dropdown-item" href="#">1A</a></li>
+                            <li><a class="dropdown-item" href="#">2A</a></li>
+                            <li><a class="dropdown-item" href="#">3A</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="me-3">
+                    <strong>Filter:</strong>
+                    <div class="dropdown d-inline">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="filterDeptDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Department
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="filterDeptDropdown">
+                            <li><a class="dropdown-item" href="#">CSE</a></li>
+                            <li><a class="dropdown-item" href="#">ECE</a></li>
+                            <li><a class="dropdown-item" href="#">EEE</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="me-3">
+                    <input type="text" class="form-control" placeholder="Search by name or roll no" aria-label="Search">
+                </div>
+            </div>
         </div>
 
         <table class="table table-striped">
@@ -150,6 +173,7 @@
                     <th>Roll No</th>
                     <th>Name</th>
                     <th>Mobile</th>
+                    <th>Department</th>
                     <th>Boarding Point</th>
                     <th>Bus No</th>
                     <th>Fee Paid</th>
@@ -162,19 +186,103 @@
                     <td>1</td>
                     <td>Krishna</td>
                     <td>1234567890</td>
+                    <td>CSE</td>
                     <td>Guntur</td>
                     <td>1A</td>
                     <td>2000</td>
                     <td>10000</td>
                     <td>
-                        <button class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modifyModal">Modify</button>
-                        <button class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal">Delete</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Ravi</td>
+                    <td>9876543210</td>
+                    <td>ECE</td>
+                    <td>Vijayawada</td>
+                    <td>2B</td>
+                    <td>3000</td>
+                    <td>10000</td>
+                    <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Sita</td>
+                    <td>1122334455</td>
+                    <td>Mechanical</td>
+                    <td>Nellore</td>
+                    <td>3C</td>
+                    <td>2500</td>
+                    <td>10000</td>
+                    <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Lakshmi</td>
+                    <td>6677889900</td>
+                    <td>Civil</td>
+                    <td>Chilakaluripet</td>
+                    <td>4D</td>
+                    <td>1500</td>
+                    <td>10000</td>
+                    <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Arjun</td>
+                    <td>9988776655</td>
+                    <td>IT</td>
+                    <td>Ongole</td>
+                    <td>5E</td>
+                    <td>4000</td>
+                    <td>10000</td>
+                    <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Ramesh</td>
+                    <td>5566778899</td>
+                    <td>EEE</td>
+                    <td>Tenali</td>
+                    <td>6F</td>
+                    <td>3500</td>
+                    <td>10000</td>
+                    <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Geeta</td>
+                    <td>3344556677</td>
+                    <td>Pharmacy</td>
+                    <td>Machilipatnam</td>
+                    <td>7G</td>
+                    <td>3000</td>
+                    <td>10000</td>
+                    <td>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal">Modify</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        
     </div>
 
     <!-- Delete Confirmation Modal -->
@@ -233,6 +341,150 @@
             </div>
         </div>
     </div>
+<script>
+    // Get DOM elements
+const searchInput = document.querySelector('input[type="text"]');
+const busDropdownItems = document.querySelectorAll('#filterBusDropdown + .dropdown-menu .dropdown-item');
+const deptDropdownItems = document.querySelectorAll('#filterDeptDropdown + .dropdown-menu .dropdown-item');
+const table = document.querySelector('table');
+const tbody = table.querySelector('tbody');
+
+// Current filter state
+let currentFilters = {
+    search: '',
+    busNo: '',
+    department: ''
+};
+
+// Flag to track if any filter is active
+function isAnyFilterActive() {
+    return currentFilters.search !== '' || 
+           currentFilters.busNo !== '' || 
+           currentFilters.department !== '';
+}
+
+// Update dropdown button text
+function updateDropdownText(dropdownId, text) {
+    const button = document.querySelector(`#${dropdownId}`);
+    button.textContent = text || (dropdownId === 'filterBusDropdown' ? 'Select Bus no' : 'Select Department');
+}
+
+// Main filter function
+function filterTable() {
+    const rows = tbody.querySelectorAll('tr:not(.no-results-row)');
+    let hasVisibleRows = false;
+    
+    rows.forEach(row => {
+        const name = row.cells[1].textContent.toLowerCase();
+        const rollNo = row.cells[0].textContent.toLowerCase();
+        const department = row.cells[3].textContent;
+        const busNo = row.cells[5].textContent;
+        const boardingPoint = row.cells[4].textContent.toLowerCase();
+        const searchTerm = currentFilters.search.toLowerCase();
+        
+        // Enhanced search matching including boarding point
+        const matchesSearch = currentFilters.search === '' || 
+            name.includes(searchTerm) ||
+            rollNo.includes(searchTerm) ||
+            boardingPoint.includes(searchTerm);
+            
+        const matchesDepartment = currentFilters.department === '' || 
+            department === currentFilters.department;
+            
+        const matchesBus = currentFilters.busNo === '' || 
+            busNo === currentFilters.busNo;
+
+        const isVisible = matchesSearch && matchesDepartment && matchesBus;
+        row.style.display = isVisible ? '' : 'none';
+        
+        if (isVisible) {
+            hasVisibleRows = true;
+        }
+    });
+
+    // Only show "No results" message if filters are active and no matches found
+    updateNoResultsMessage(!hasVisibleRows && isAnyFilterActive());
+}
+
+// Event Listeners
+searchInput.addEventListener('input', (e) => {
+    currentFilters.search = e.target.value.trim(); // Trim whitespace
+    filterTable();
+});
+
+// Bus dropdown handling
+busDropdownItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedBus = e.target.textContent;
+        currentFilters.busNo = selectedBus;
+        updateDropdownText('filterBusDropdown', selectedBus);
+        filterTable();
+    });
+});
+
+// Department dropdown handling
+deptDropdownItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedDept = e.target.textContent;
+        currentFilters.department = selectedDept;
+        updateDropdownText('filterDeptDropdown', selectedDept);
+        filterTable();
+    });
+});
+
+// Add clear filter functionality
+function addClearFilters() {
+    const filterSection = document.querySelector('.d-flex.align-items-center');
+    
+    const clearButton = document.createElement('button');
+    clearButton.className = 'btn btn-warning ms-3';
+    clearButton.textContent = 'Clear Filters';
+    
+    clearButton.addEventListener('click', () => {
+        // Reset all filters
+        currentFilters = {
+            search: '',
+            busNo: '',
+            department: ''
+        };
+        
+        // Reset UI
+        searchInput.value = '';
+        updateDropdownText('filterBusDropdown');
+        updateDropdownText('filterDeptDropdown');
+        
+        // Show all rows and remove "no results" message
+        filterTable();
+    });
+    
+    filterSection.appendChild(clearButton);
+}
+
+// Initialize clear filters button
+addClearFilters();
+
+// Updated: No results message handling
+function updateNoResultsMessage(showMessage) {
+    let existingMessage = tbody.querySelector('.no-results-row');
+    
+    if (showMessage) {
+        if (!existingMessage) {
+            const messageRow = document.createElement('tr');
+            messageRow.className = 'no-results-row';
+            const messageCell = document.createElement('td');
+            messageCell.colSpan = '9';
+            messageCell.className = 'text-center text-muted py-4';
+            messageCell.textContent = 'No matching records found';
+            messageRow.appendChild(messageCell);
+            tbody.appendChild(messageRow);
+        }
+    } else if (existingMessage) {
+        existingMessage.remove();
+    }
+}
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
